@@ -28,14 +28,35 @@
                     angular.module("listaTelefonica").controller("mainController", function ($scope) {
                         $scope.titulo = "Bem vindo!";
                         $scope.contatos = [
-                            {nome: 'Pedro', telefone: '123456789'},
-                            {nome: 'Maria', telefone: '999999997'},
-                            {nome: 'Carlos', telefone: '98787877'},
-                            {nome: 'Rafael', telefone: '78924566'}];
+                            {nome: 'Pedro', telefone: '123456789', operadora: ""},
+                            {nome: 'Maria', telefone: '999999997', operadora: ""},
+                            {nome: 'Carlos', telefone: '98787877', operadora: ""},
+                            {nome: 'Rafael', telefone: '78924566', operadora: ""}];
+
+                        $scope.operadoras = [
+                            {operadora: "Tim", id: "01", categoria: "Local"},
+                            {operadora: "Claro", id: "02", categoria: "Local"},
+                            {operadora: "Oi", id: "03", categoria: "Fixo"}
+                        ];
 
 
                         $scope.salvarContato = function (contato) {
                             $scope.contatos.push(angular.copy(contato));
+                            delete $scope.contato;
+                        };
+
+                        $scope.deletarContato = function (contatos) {
+                            $scope.contatos = contatos.filter(function (contato) {
+                                if (!contato.selecionado) {
+                                    return contato;
+                                }
+                            });
+                        };
+
+                        $scope.contatoSelecionado = function (contatos) {
+                            return !contatos.some(function (contato) {
+                                return contato.selecionado;
+                            });
                         };
                     });
         </script>
@@ -43,21 +64,30 @@
     <body ng-controller="mainController">
         <div class="container">
             <div class="jumbotron">
-                <table class="table table-striped">
+                <table ng-show="contatos.length > 0" class="table table-striped">
                     <tr>
+                        <th></th>
                         <th>Nome</th>
                         <th>Telefone</th>
+                        <th>Operadora</th>
                     </tr>
-                    <tr ng-repeat="contato in contatos">
+                    <tr ng-class="{ danger : contato.selecionado }" ng-repeat="contato in contatos">
+                        <th> <input type="checkbox" ng-model="contato.selecionado" /> </th>
                         <td>{{contato.nome}}</td>
                         <td>{{contato.telefone}}</td>
+                        <td>{{contato.operadora.operadora}}</td>
                     </tr>
                 </table>
                 <form>
-                    <input class="form-control" type="text" ng-model="contato.nome" required placeholder="Nome">
-                    <input class="form-control" type="text" ng-model="contato.telefone" required placeholder="Telefone">
-                    <input class="btn btn-primary btn-block" ng-click="salvarContato(contato)" value="Adicionar Contato">
+                    <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome">
+                    <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone">
+                    <select class="form-control" ng-model="contato.operadora" ng-options="operadora.operadora group by operadora.categoria for operadora in operadoras">
+                        <option value="">Selecione uma operadora</option>
+                    </select>
+                    <input class="btn btn-primary btn-block" ng-disabled="!contato.nome || !contato.telefone || !contato.operadora" ng-click="salvarContato(contato)" value="Adicionar Contato">
                 </form>
+                <input class="btn btn-danger btn-block" ng-disabled="contatoSelecionado(contatos)" ng-click="deletarContato(contatos)" value="Deletar Contato(s)">
+
             </div>
         </div>
     </body>
