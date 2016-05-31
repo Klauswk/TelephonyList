@@ -28,10 +28,10 @@
                     angular.module("listaTelefonica").controller("mainController", function ($scope) {
                         $scope.titulo = "Bem vindo!";
                         $scope.contatos = [
-                            {nome: 'Pedro', telefone: '123456789', operadora: ""},
-                            {nome: 'Maria', telefone: '999999997', operadora: ""},
-                            {nome: 'Carlos', telefone: '98787877', operadora: ""},
-                            {nome: 'Rafael', telefone: '78924566', operadora: ""}];
+                            {nome: 'Pedro', telefone: '123456789', operadora: "", data: new Date()},
+                            {nome: 'Maria', telefone: '999999997', operadora: "", data: new Date()},
+                            {nome: 'Carlos', telefone: '98787877', operadora: "", data: new Date()},
+                            {nome: 'Rafael', telefone: '78924566', operadora: "", data: new Date()}];
 
                         $scope.operadoras = [
                             {operadora: "Tim", id: "01", categoria: "Local"},
@@ -58,37 +58,44 @@
                                 return contato.selecionado;
                             });
                         };
+                        
+                        $scope.ordernarPor = function (criterio) {
+                            $scope.criterioOrdenacao = criterio;
+                            $scope.flip =  !$scope.flip;
+                        };
                     });
         </script>
     </head>
     <body ng-controller="mainController">
-        <div class="container">
-            <div class="jumbotron">
-                <table ng-show="contatos.length > 0" class="table table-striped">
-                    <tr>
-                        <th></th>
-                        <th>Nome</th>
-                        <th>Telefone</th>
-                        <th>Operadora</th>
-                    </tr>
-                    <tr ng-class="{ danger : contato.selecionado }" ng-repeat="contato in contatos">
-                        <th> <input type="checkbox" ng-model="contato.selecionado" /> </th>
-                        <td>{{contato.nome}}</td>
-                        <td>{{contato.telefone}}</td>
-                        <td>{{contato.operadora.operadora}}</td>
-                    </tr>
-                </table>
-                <form>
-                    <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome">
-                    <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone">
-                    <select class="form-control" ng-model="contato.operadora" ng-options="operadora.operadora group by operadora.categoria for operadora in operadoras">
-                        <option value="">Selecione uma operadora</option>
-                    </select>
-                    <input class="btn btn-primary btn-block" ng-disabled="!contato.nome || !contato.telefone || !contato.operadora" ng-click="salvarContato(contato)" value="Adicionar Contato">
-                </form>
-                <input class="btn btn-danger btn-block" ng-disabled="contatoSelecionado(contatos)" ng-click="deletarContato(contatos)" value="Deletar Contato(s)">
+        <div class="jumbotron">
+            <input class="form-control" type="text" placeholder="O que está buscando?" ng-model="criterioBusca">
+            {{flip}}
+            <table ng-show="contatos.length > 0" class="table table-striped">
+                <tr>
+                    <th></th>
+                    <th><a href="" ng-click="ordernarPor('nome')">Nome</a> </th>
+                    <th><a href="" ng-click="ordernarPor('telefone')">Telefone</a></th>
+                    <th><a href="" ng-click="ordernarPor('operadora')">Operadora</a></th>
+                    <th><a href="" ng-click="ordernarPor('data')">Data</a></th>
+                </tr>
+                <tr ng-class="{ danger : contato.selecionado }" ng-repeat="contato in contatos| filter:{nome: criterioBusca} | orderBy:criterioOrdenacao:flip">
+                    <th> <input type="checkbox" ng-model="contato.selecionado" /> </th>
+                    <td>{{contato.nome}}</td>
+                    <td>{{contato.telefone}}</td>
+                    <td>{{contato.operadora.operadora}}</td>
+                    <td>{{contato.data| date:'dd/MM/yyyy'}} </td>
+                </tr>
+            </table>
+            <form>
+                <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome">
+                <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone">
+                <select class="form-control" ng-model="contato.operadora" ng-options="operadora.operadora group by operadora.categoria for operadora in operadoras">
+                    <option value="">Selecione uma operadora</option>
+                </select>
+                <input class="btn btn-primary btn-block" ng-disabled="!contato.nome || !contato.telefone || !contato.operadora" ng-click="salvarContato(contato)" value="Adicionar Contato">
+            </form>
+            <input class="btn btn-danger btn-block" ng-disabled="contatoSelecionado(contatos)" ng-click="deletarContato(contatos)" value="Deletar Contato(s)">
 
-            </div>
         </div>
     </body>
 </html>
