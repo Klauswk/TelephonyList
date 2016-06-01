@@ -25,22 +25,35 @@
         <script type="text/javascript" src="angular.min.js"></script>
         <script>
                     angular.module("listaTelefonica", []);
-                    angular.module("listaTelefonica").controller("mainController", function ($scope) {
+                    angular.module("listaTelefonica").controller("mainController", function ($scope,$http) {
+                        
+                        var carregarDados = function(){
+                            $http.get("http://localhost:8383/ListaTelefonicaJS/contatosData.js").success(function(data,status){
+                               $scope.contatos = data;
+                               
+                            }).error(function(data,status){
+                                console.log(data);
+                            });
+                        };
+                        
+                        var carregarOperadora = function(){
+                            $http.get("http://localhost:8383/ListaTelefonicaJS/operadorasData.js").success(function(data,status){
+                               $scope.operadoras = data;
+                               
+                            }).error(function(data,status){
+                                console.log(data);
+                            });
+                        };
+                        
                         $scope.titulo = "Bem vindo!";
-                        $scope.contatos = [
-                            {nome: 'Pedro', telefone: '123456789', operadora: "", data: new Date()},
-                            {nome: 'Maria', telefone: '999999997', operadora: "", data: new Date()},
-                            {nome: 'Carlos', telefone: '98787877', operadora: "", data: new Date()},
-                            {nome: 'Rafael', telefone: '78924566', operadora: "", data: new Date()}];
+                        
+                        $scope.contatos = [];
 
-                        $scope.operadoras = [
-                            {operadora: "Tim", id: "01", categoria: "Local"},
-                            {operadora: "Claro", id: "02", categoria: "Local"},
-                            {operadora: "Oi", id: "03", categoria: "Fixo"}
-                        ];
+                        $scope.operadoras = [];
 
 
                         $scope.salvarContato = function (contato) {
+                            contato.data = new Date();
                             $scope.contatos.push(angular.copy(contato));
                             delete $scope.contato;
                         };
@@ -63,6 +76,9 @@
                             $scope.criterioOrdenacao = criterio;
                             $scope.flip =  !$scope.flip;
                         };
+                        
+                        carregarDados();
+                        carregarOperadora();
                     });
         </script>
     </head>
