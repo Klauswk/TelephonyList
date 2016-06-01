@@ -1,8 +1,16 @@
 {
-    "name": "ListaTelefonicaJS",
-    "version": "1.0.0",
-    "keywords": ["util", "functional", "server", "client", "browser"],
-    "author": "Klaus Klein",
-    "contributors": [],
-    "dependencies": {}
+  "name": "ListaTelefonicaJS",
+  "version": "1.0.0",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "Klaus Klein",
+  "contributors": [],
+  "dependencies": {
+    "express": "^4.13.4"
+  }
 }
