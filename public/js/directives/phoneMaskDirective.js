@@ -5,7 +5,7 @@ angular.module("listaTelefonica").directive("phoneMask", function () {
             
             var _formatPhone = function(phone){
                 phone = phone.replace(/[^0-9]+/g,"");
-                console.log(phone);
+                //console.log(phone);
                 if(phone.length > 4){
                     phone = phone.substring(0,4) + "-" + phone.substring(4,9);
                 }

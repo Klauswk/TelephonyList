@@ -23,11 +23,11 @@
         <div class="jumbotron">
             <input class="form-control" type="text" placeholder="O que está buscando?" ng-model="criterioBusca">
             
-            <ui-alert title="error">
+            <!-- ui-alert title="Error">
                 Ocorreu um erro ao buscar os dados.
-            </ui-alert>
+            </ui-alert -->
             
-            <table ng-show="contatos.length > 0" class="table table-striped">
+            <table id="content-table" ng-show="contatos.length > 0" class="table table-striped">
                 <tr>
                     <th></th>
                     <th>Serial</th>
@@ -51,7 +51,7 @@
                 <select class="form-control" ng-model="contato.operadora" ng-options="operadora.operadora group by operadora.categoria for operadora in operadoras">
                     <option value="">Selecione uma operadora</option>
                 </select>
-                <input class="btn btn-primary btn-block" ng-disabled="!contato.nome || !contato.telefone || !contato.operadora" ng-click="salvarContato(contato)" value="Adicionar Contato">
+                <input class="btn btn-primary btn-block" ng-disabled="podeAdicionarContato(contato)" ng-click="salvarContato(contato)" value="Adicionar Contato">
             </form>
             <input class="btn btn-danger btn-block" ng-disabled="contatoSelecionado(contatos)" ng-click="deletarContato(contatos)" value="Deletar Contato(s)">
 

@@ -1,5 +1,5 @@
 {
-  "name": "ListaTelefonicaJS",
+  "name": "lista-telefonica-js",
   "version": "1.0.0",
   "keywords": [
     "util",
@@ -10,7 +10,27 @@
   ],
   "author": "Klaus Klein",
   "contributors": [],
-  "dependencies": {
-    "express": "^4.13.4"
+  "dependencies": {},
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Klauswk/TelephonyList.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Klauswk/TelephonyList/issues"
+  },
+  "homepage": "https://github.com/Klauswk/TelephonyList#readme",
+  "description": "",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-uglify": "^2.0.0"
   }
 }

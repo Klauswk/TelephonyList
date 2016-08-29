@@ -48,6 +48,15 @@ angular.module("listaTelefonica").controller("mainController", function ($scope,
         });
     };
 
+    $scope.podeAdicionarContato = function (contato){
+       
+       if(!contato){
+           return false;
+       }
+       return !((contato.nome) || (contato.telefone) || (contato.operadora) || (contato.telefone.length === 10));
+       
+    };
+
     $scope.ordernarPor = function (criterio) {
         $scope.criterioOrdenacao = criterio;
         $scope.flip = !$scope.flip;
