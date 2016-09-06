@@ -1,1 +1,1 @@
-angular.module("listaTelefonica", ['serialGeneratorApp']);
+angular.module("listaTelefonica", ['serialGeneratorApp','phoneMaskModule']);

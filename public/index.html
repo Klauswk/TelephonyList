@@ -7,26 +7,15 @@
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="css/app.css">
         <link rel="stylesheet" type="text/css" href="css/ui.css">
-        <script type="text/javascript" src="angular.min.js"></script>
-        <script type="text/javascript" src="js/app.js"></script>
-        <script type="text/javascript" src="js/controllers/mainController.js"></script>
-        <script type="text/javascript" src="js/services/contatosAPIService.js"></script>
-        <script type="text/javascript" src="js/services/operadorasAPIService.js"></script>
-        <script type="text/javascript" src="js/config.js"></script>
-        <script type="text/javascript" src="js/services/serialGeneratorService.js"></script>
-        <script type="text/javascript" src="js/serialGeneratorConfig.js"></script>
-        <script type="text/javascript" src="js/directives/uiAlertDirective.js"></script>
-        <script type="text/javascript" src="js/directives/phoneMaskDirective.js"></script>
-        
     </head>
-    <body ng-controller="mainController">
+    <body>
         <div class="jumbotron">
             <input class="form-control" type="text" placeholder="O que está buscando?" ng-model="criterioBusca">
-            
+
             <!-- ui-alert title="Error">
                 Ocorreu um erro ao buscar os dados.
             </ui-alert -->
-            
+
             <table id="content-table" ng-show="contatos.length > 0" class="table table-striped">
                 <tr>
                     <th></th>
@@ -47,14 +36,25 @@
             </table>
             <form>
                 <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome">
-                <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" phone-mask>
+                <input class="form-control" phone:mask="" type="tel" ng-model="contato.telefone" placeholder="Telefone">
                 <select class="form-control" ng-model="contato.operadora" ng-options="operadora.operadora group by operadora.categoria for operadora in operadoras">
                     <option value="">Selecione uma operadora</option>
                 </select>
                 <input class="btn btn-primary btn-block" ng-disabled="podeAdicionarContato(contato)" ng-click="salvarContato(contato)" value="Adicionar Contato">
             </form>
             <input class="btn btn-danger btn-block" ng-disabled="contatoSelecionado(contatos)" ng-click="deletarContato(contatos)" value="Deletar Contato(s)">
-
         </div>
+
+        <script type="text/javascript" src="./../node_modules/angular/angular.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/controllers/mainController.js"></script>
+        <script type="text/javascript" src="js/services/contactsDAO.js"></script>
+        <script type="text/javascript" src="js/services/mobileOperatorDAO.js"></script>
+        <script type="text/javascript" src="js/services/contactService.js"></script>
+        <script type="text/javascript" src="js/config.js"></script>
+        <script type="text/javascript" src="js/services/serialGeneratorService.js"></script>
+        <script type="text/javascript" src="js/serialGeneratorConfig.js"></script>
+        <script type="text/javascript" src="js/directives/uiAlertDirective.js"></script>
+        <script type="text/javascript" src="js/directives/phoneMaskDirective.js"></script>
     </body>
 </html>

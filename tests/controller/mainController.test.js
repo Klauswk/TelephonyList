@@ -13,7 +13,7 @@ describe('Main Test case', function () {
     it('Should inject', function () {
         var $scope = {};
         var controller = $controller('mainController', {$scope: $scope});
-        
+
         expect(controller).not.toBe(undefined);
     });
 
