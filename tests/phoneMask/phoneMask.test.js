@@ -18,7 +18,7 @@ describe('Main Test case', function () {
         compiled(scope);
         scope.$digest();
         
-        elem.triggerHandler('onKeyUp');
+        elem.triggerHandler('keyup');
         
         expect(scope.numero).toBe("9876-5");
     });
@@ -31,7 +31,7 @@ describe('Main Test case', function () {
         compiled(scope);
         scope.$digest();
         
-        elem.triggerHandler('onKeyUp');
+        elem.triggerHandler('keyup');
         
         expect(scope.numero).toBe("");
     });
@@ -43,7 +43,7 @@ describe('Main Test case', function () {
         compiled(scope);
         scope.$digest();
         
-        elem.triggerHandler('onKeyUp');
+        elem.triggerHandler('keyup');
         
         expect(scope.numero).toBe("");
     });
@@ -57,7 +57,7 @@ describe('Main Test case', function () {
         compiled(scope);
         scope.$digest();
         
-        elem.triggerHandler('onKeyUp');
+        elem.triggerHandler('keyup');
         
         expect(scope.numero).toBe("9876-54321");
     });
@@ -69,7 +69,7 @@ describe('Main Test case', function () {
         compiled(scope);
         scope.$digest();
         
-        elem.triggerHandler('onKeyUp');
+        elem.triggerHandler('keyup');
         
         expect(scope.numero).toBe("9876-54321");
     });

@@ -8,13 +8,10 @@ describe('Main Test case', function () {
         $controller = _$controller_;
     }));
 
-
-
     it('Should inject', function () {
         var $scope = {};
         var controller = $controller('mainController', {$scope: $scope});
 
         expect(controller).not.toBe(undefined);
     });
-
 });
