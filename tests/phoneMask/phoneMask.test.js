@@ -1,4 +1,4 @@
-describe('Main Test case', function () {
+describe('PhoneMask TestCase', function () {
 
     var $compile, $rootScope;
     var scope = {};

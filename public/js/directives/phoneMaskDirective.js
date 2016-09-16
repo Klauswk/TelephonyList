@@ -8,7 +8,13 @@ angular.module("phoneMaskModule").directive("phoneMask", function () {
                 if(!phone){
                     return "";
                 }else if(phone.length > 9){
-                    return phone.substring(0,9);
+                    if(phone.includes("-")){
+                        return phone.substring(0,9);
+                    }else{
+                        phone = phone.substring(0,4) + "-" + phone.substring(4,9);
+                        return phone;
+                        
+                    }
                 }
                 phone = phone.replace(/[^0-9]+/g,"");
                 if(phone.length > 4){
