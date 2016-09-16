@@ -7,6 +7,8 @@ angular.module("phoneMaskModule").directive("phoneMask", function () {
             var _formatPhone = function(phone){
                 if(!phone){
                     return "";
+                }else if(phone.length > 9){
+                    return phone.substring(0,9);
                 }
                 phone = phone.replace(/[^0-9]+/g,"");
                 if(phone.length > 4){

@@ -1,3 +1,3 @@
 angular.module("listaTelefonica").value("config",{
-    apiURL : "http://localhost:8383/TelephonyList"
+    apiURL : "0.0.0.0:8000"
 });

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="listaTelefonica">
-    <head ng-controller="mainController">
+    <head >
         <title ng-bind="titulo"> </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="css/app.css">
         <link rel="stylesheet" type="text/css" href="css/ui.css">
     </head>
-    <body>
+    <body ng-controller="mainController">
         <div class="jumbotron">
             <input class="form-control" type="text" placeholder="O que está buscando?" ng-model="criterioBusca">
 

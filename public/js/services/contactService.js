@@ -19,7 +19,7 @@ angular.module("listaTelefonica").service("contactService", function ($http, con
         if (!contact) {
             return false;
         }
-        return !((contact.nome) || (contact.telefone) || (contact.operadora) || (contact.telefone.length === 10));
+        return !((contact.nome) || (contact.telefone) || (contact.operadora) || (contact.telefone.length === 9));
     };
 
     var _deleteSelectedContacts = function (contacts) {

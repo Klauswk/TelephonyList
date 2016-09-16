@@ -1,26 +1,26 @@
 angular.module("listaTelefonica").controller("mainController", function ($scope,contactDAO, contactService, mobileOperatorDAO) {
 
     var loadContacts = function () {
-        /*contactDAO.getContacts().success(function (data, status) {
+        contactDAO.getContacts().success(function (data, status) {
             $scope.contatos = data;
 
         }).error(function (data, status) {
-            //console.log(data);
-        });*/
+            console.log(data);
+        });
     };
 
     var loadMobileOperator = function () {
-        /*mobileOperatorDAO.getOperators().success(function (data, status) {
+        mobileOperatorDAO.getOperators().success(function (data, status) {
             $scope.operadoras = data;
 
         }).error(function (data, status) {
             //console.log(data);
-        });*/
+        });
     };
 
     $scope.titulo = "Bem vindo!";
 
-    $scope.contatos = ["oi","tim"];
+    $scope.contatos = [];
 
     $scope.operadoras = [];
 
@@ -40,7 +40,7 @@ angular.module("listaTelefonica").controller("mainController", function ($scope,
     };
 
     $scope.podeAdicionarContato = function (contato) {
-        return !contactService.canAddContact(contato);
+        return contactService.canAddContact(contato);
     };
 
     $scope.ordernarPor = function (criterio) {
